@@ -68,7 +68,8 @@ class MainActivity : AppCompatActivity(), TimePickerFragment.OnTimeSetListener {
             appDatabase.phrases().delete(it)
             phrasesAdapter.setPhrases(appDatabase.phrases().getAll())
 
-            if(phrasesAdapter.getPhrases().isEmpty()){
+            if(appDatabase.phrases().getAll().isEmpty()){
+                Toast.makeText(this, "EMPTY", Toast.LENGTH_LONG)
                 val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
                 for(pendingIntent in AlarmManagerHelper.pendingIntentMap){
